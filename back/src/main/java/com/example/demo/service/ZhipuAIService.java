@@ -13,12 +13,13 @@ import java.util.Map;
 
 @Service
 public class ZhipuAIService {
-    private static final String API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions"; 
-    private static final String API_KEY = "***REMOVED***";
+    private static final String API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions";
+    private final String apiKey;
     private final RestTemplate restTemplate;
 
     public ZhipuAIService() {
         this.restTemplate = new RestTemplate();
+        this.apiKey = System.getenv("ZHIPU_API_KEY");
     }
 
     public String chat(String userMessage, List<String> fileContents) {
@@ -39,9 +40,14 @@ public class ZhipuAIService {
                 }
             }
 
+            // 未配置 API Key 时直接返回提示，避免泄露密钥
+            if (apiKey == null || apiKey.isEmpty()) {
+                return "未配置环境变量 ZHIPU_API_KEY，无法调用AI服务。";
+            }
+
             // 设置请求头
             HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer " + API_KEY);
+            headers.set("Authorization", "Bearer " + apiKey);
             headers.set("Content-Type", "application/json");
 
             // 构建请求体

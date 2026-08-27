@@ -1,5 +1,6 @@
 # 后端忽略规则
 back/target/
+back/bin/
 back/uploads/
 back/.mvn/wrapper/maven-wrapper.jar
 
