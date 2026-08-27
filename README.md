@@ -44,7 +44,4 @@ npm run serve
 
 后端默认端口 `8081`，前端由 `vue-cli-service serve` 提供。
 
-## 说明
 
-- AI 调用密钥务必通过环境变量 `ZHIPU_API_KEY` 配置，请勿写入代码或 `application.properties`。
-- 后端依赖本机可执行的 `python` 命令用于文档美化脚本。
