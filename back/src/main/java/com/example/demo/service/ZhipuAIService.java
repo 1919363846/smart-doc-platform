@@ -52,7 +52,7 @@ public class ZhipuAIService {
 
             // 构建请求体
             Map<String, Object> requestBody = new HashMap<>();
-            requestBody.put("model", "glm-4");
+            requestBody.put("model", "glm-4-flash");
             requestBody.put("messages", List.of(
                 Map.of("role", "user", "content", messageContent.toString())
             ));
